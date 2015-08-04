@@ -1,26 +1,37 @@
 'use strict';
 
 var express = require('express');
-var request = require('supertest');
+var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
 var nconf = require('nconf');
-var crypto = require('cyprto');
 
-exports['Test send message success'] = function(test){
+var request = supertest(app);
 
-	var time = new Date().getTime();
+exports['Check view health'] = function(test){
 
-	var data = {
-		receiver:'@tester';
-		text:'Hello World!';
+	request.get('/sendmessage').end(function(err,res)){
+
+  test.equal(err,null,'It should not had any error!');
+
+	test.equal(res,200,'It should return 200!');
+
+	test.done();
+
 	}
+}
 
-	var salt = secret;
+exports['Test send message'] = {
 
-	var signature = sha1sum
+	'Test send message sucess':function(test){
 
-	var sendObject = {
-		message:message,
-		time:time,
-		signature:signature
+		request.post('/sendmessage'),
+		.send({'receiver':''})
+		.end(function(err,res)){
+
+		  test.equal(err,null,'It should not had any error!')
+
+			test.equal(res,200,'It should return 200!');
+
+		}
+	}
 }
