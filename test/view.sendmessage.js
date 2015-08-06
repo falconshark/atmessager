@@ -22,7 +22,7 @@ exports['Check view health'] = function(test){
 
 exports['Test send message'] = {
 
-	'Test send message sucess':function(test){
+	'Test send message success':function(test){
 
 		request.post('/sendmessage'),
 		.send({'receiver':''})
@@ -30,7 +30,7 @@ exports['Test send message'] = {
 
 		  test.equal(err,null,'It should not had any error!')
 
-			test.equal(res,200,'It should return 200!');
+			test.equal(res,201,'It should return 201!');
 
 		}
 	}
