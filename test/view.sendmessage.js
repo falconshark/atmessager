@@ -4,6 +4,9 @@ var express = require('express');
 var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
 var nconf = require('nconf');
+nconf.argv()
+		 .env()
+		 .file({ file: 'config.json' });
 
 var request = supertest(app);
 
