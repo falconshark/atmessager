@@ -7,3 +7,11 @@ bash 'Add chris-lea apt-repository' do
 end
 
 package 'nodejs'
+
+bash 'Start ATMessager' do
+  user 'vagrant'
+  code <<-EOC
+    cd /opt/nx/atmessager
+    node app.js
+  EOC
+end
