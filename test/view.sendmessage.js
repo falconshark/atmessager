@@ -25,7 +25,7 @@ exports['Test send message'] = {
 	'Test send message success':function(test){
 
 		request.post('/sendmessage'),
-		.send({'receiver':''})
+		.send({'receiver':'','text':'Hello World'!})
 		.end(function(err,res)){
 
 		  test.equal(err,null,'It should not had any error!')
