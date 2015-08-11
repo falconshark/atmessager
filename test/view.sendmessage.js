@@ -12,7 +12,7 @@ var request = supertest(app);
 
 exports['Check view health'] = function(test){
 
-	request.get('/sendmessage').end(function(err,res)){
+	request.get('/message').end(function(err,res)){
 
   test.equal(err,null,'It should not had any error!');
 
@@ -27,7 +27,7 @@ exports['Test send message'] = {
 
 	'Test send message success':function(test){
 
-		request.post('/sendmessage'),
+		request.post('/message'),
 		.send({'receiver':'','text':'Hello World'!})
 		.end(function(err,res)){
 
