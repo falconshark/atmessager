@@ -1,3 +1,5 @@
-#ATMessager
+ATMessager
+===
 
-A Telegram bot for auto forwarding messages.
+An API which can make sending messages by telegram bot be automatically and simply.
+
