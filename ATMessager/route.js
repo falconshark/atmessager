@@ -1,6 +1,6 @@
 var express = require('express');
-var health = require('./health.js');
-var message = require('./message.js');
+var health = require('./views/health.js');
+var message = require('./views/message.js');
 
 var log4js = require('log4js');
 var logger = log4js.getLogger('Routes');
