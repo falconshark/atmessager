@@ -4,7 +4,7 @@ var express = require('express');
 var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
 var testUtil = require('./common/testutil.js');
-var health = require('../atmessager/views/health.js')
+var health = require('../atmessager/views/health.js');
 
 var app = testUtil.configExpress(express());
 
