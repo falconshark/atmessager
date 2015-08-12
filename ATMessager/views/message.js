@@ -1,5 +1,5 @@
 var request = require('request');
-var promise = require('promise-io/promise');
+var promise = require('promised-io/promise');
 
 var message = function(req,res) {
 
@@ -14,6 +14,6 @@ function sendMessage(receiver,message,botname,password){
 
 }
 
-moudle.exports = {
-  'sendMessage':sendMessage;
+module.exports = {
+  'sendMessage':sendMessage
 };
