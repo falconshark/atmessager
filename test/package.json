@@ -10,5 +10,5 @@
     "supertest":"1.0.1",
     "body-parser":"1.13.3"
   },
-  "license": "Apache2"
+  "license": "Apache-2.0"
 }
