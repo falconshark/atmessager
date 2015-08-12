@@ -5,7 +5,8 @@ function configExpress(app){
   app.set('views',__dirname+'/views');
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use('/', router);
+
+  return app;
 
 }
 
