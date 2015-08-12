@@ -3,7 +3,8 @@
 var express = require('express');
 var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
-var app = express();
+var testUtil = require('./common/testutil.js');
+var app = testUtil.configExpress(express());
 
 var request = supertest(app);
 
@@ -13,7 +14,7 @@ exports['Check view health'] = function(test){
 
   test.equal(err,null,'It should not had any error!');
 
-	test.equal(res,200,'It should return 200!');
+	test.equal(res.statusCode,200,'It should return 200!');
 
 	test.done();
 });
