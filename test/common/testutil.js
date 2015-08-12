@@ -8,3 +8,9 @@ function configExpress(app){
   app.use('/', router);
 
 }
+
+module.exports = {
+
+  configExpress:configExpress
+
+}
