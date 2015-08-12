@@ -13,5 +13,5 @@ if ('development' == env) {
     app.use('/', router);
 }
 
-server.setServer(app);
+server.startServer(app);
 module.exports = app;

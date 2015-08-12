@@ -8,7 +8,7 @@ nconf.argv()
 var log4js = require('log4js');
 var logger = log4js.getLogger('Server');
 
-function setServer(app){
+function startServer(app){
 
   var port = nconf.get('server').port;
   var listen = app.listen(port);
@@ -18,5 +18,5 @@ function setServer(app){
 }
 
 module.exports ={
-  setServer:setServer
+  startServer:startServer
 }
