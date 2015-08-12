@@ -4,11 +4,15 @@ var express = require('express');
 var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
 var testUtil = require('./common/testutil.js');
+var health = require('../atmessager/views/health.js')
+
 var app = testUtil.configExpress(express());
+
+app.get('/',health.healthCheck);
 
 var request = supertest(app);
 
-exports['Check view health'] = function(test){
+exports['Check health view'] = function(test){
 
 	request.get('/').end(function(err,res){
 
