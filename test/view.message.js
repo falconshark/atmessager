@@ -41,7 +41,7 @@ exports['Test send message'] = {
 		var password = nconf.get('message').password;
 
 		request.post('/message')
-		.send({'receiver':receiver,'botname':botname,'text':'Hello World!'})
+		.send({'receiver':receiver,'botname':botname,'message':'Hello World!'})
 		.end(function(err,res){
 
 		  test.equal(err,null,'It should not had any error!')
@@ -60,7 +60,9 @@ exports['Test send message'] = {
 		var password = nconf.get('message').password;
 
 		request.post('/message')
-		.send({'receiver':'Hello Man','botname':botname,'text':'Hello World!'})
+		.send({'receiver':'Hello Man',
+		'botname':botname,
+		'message':'Hello World!'})
 		.end(function(err,res){
 
 			test.equal(res.statusCode,400,'It should return 400!');
@@ -77,10 +79,30 @@ exports['Test send message'] = {
 		var password = nconf.get('message').password;
 
 		request.post('/message')
-		.send({'receiver':receiver,'botname':'noBot','text':'Hello World!'})
+		.send({'receiver':receiver,
+		'botname':'noBot',
+		'message':'Hello World!',
+		'password':'hello123'})
 		.end(function(err,res){
 
 			test.equal(res.statusCode,401,'It should return 401!');
+
+			test.done();
+
+		});
+	},
+
+	'Test send message failed(password mismatch)':function(test){
+
+		var receiver = nconf.get('message').receiver;
+		var botname  = nconf.get('message').botname;
+		var password = nconf.get('message').password;
+
+		request.post('/message')
+		.send({'receiver':receiver,'botname':'noBot','message':'Hello World!'})
+		.end(function(err,res){
+
+			test.equal(res.statusCode,402,'It should return 402!');
 
 			test.done();
 
