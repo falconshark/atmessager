@@ -17,8 +17,6 @@ var request = supertest(app);
 
 app.get('/message',message.sendMessage);
 
-var receiver = nconf.get('message').receiver;
-
 exports['Check view health'] = function(test){
 
 	request.get('/message').end(function(err,res){
@@ -35,8 +33,12 @@ exports['Test send message'] = {
 
 	'Test send message success':function(test){
 
+		var receiver = nconf.get('message').receiver;
+		var botname  = nconf.get('message').botname;
+		var password = nconf.get('message').password;
+
 		request.post('/message')
-		.send({'receiver':'','text':'Hello World!'})
+		.send({'receiver':receiver,'botname':botname,'text':'Hello World!'})
 		.end(function(err,res){
 
 		  test.equal(err,null,'It should not had any error!')
