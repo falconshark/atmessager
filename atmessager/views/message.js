@@ -3,8 +3,7 @@ var promise = require('promised-io/promise');
 var logger = require('log4js').getLogger('Unit-Test');
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
-     .file('receviers', __dirname + '/../config/receivers.json')
-     .file('senders', __dirname + '/../config/senders.json');
+     .file('receviers', __dirname + '/../config/receivers.json');
 
 var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
 
@@ -18,10 +17,10 @@ function sendMessage(req,res){
   var receiver = req.body.receiver;
   var message = req.body.message;
   var botname = req.body.botname;
+  var username = req.body.username;
   var password = req.body.password;
-  var testMode = req.body.testMode;
 
-  var vaildResult = vaildMessage(receiver,message,botname,password,testMode);
+  var vaildResult = vaildMessage(receiver,message,botname,username,password);
 
   switch (vaildResult['error']) {
 
