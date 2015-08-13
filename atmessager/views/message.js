@@ -4,6 +4,7 @@ var logger = require('log4js').getLogger('Unit-Test');
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json')
+     .file('senders', __dirname + '/../config/senders.json');
 
 var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
 
