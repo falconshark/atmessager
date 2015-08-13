@@ -15,11 +15,14 @@ var app = testUtil.configExpress(express());
 
 var request = supertest(app);
 
-app.get('/message',message.sendMessage);
+app.get('/message',message.healthCheck);
+app.post('/message',message.sendMessage);
 
 exports['Check view health'] = function(test){
 
 	request.get('/message').end(function(err,res){
+
+  logger.debug('The http status of message view: ' + res.statusCode );
 
   test.equal(err,null,'It should not had any error!');
 
@@ -77,24 +80,24 @@ exports['Test send message'] = {
 		.send({'receiver':receiver,'botname':'noBot','text':'Hello World!'})
 		.end(function(err,res){
 
-			test.equal(res.statusCode,401,'It should return 400!');
+			test.equal(res.statusCode,401,'It should return 401!');
 
 			test.done();
 
 		});
-	}
+	},
 
-	'Test send message failed(miss message name)':function(test){
+	'Test send message failed(miss message)':function(test){
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
-		.send({'receiver':receiver,'botname':botname})
+		.send({'receiver':receiver,'botname':botname,'password':password})
 		.end(function(err,res){
 
-			test.equal(res.statusCode,401,'It should return 400!');
+			test.equal(res.statusCode,403,'It should return 403!');
 
 			test.done();
 
