@@ -24,17 +24,25 @@ function sendMessage(req,res){
 
   switch (vaildResult['error']) {
 
+    //Bad Request: Wrong receiver name
+
     case 333:
       res.sendStatus(400);
       break;
+
+    //Bad Request: Wrong bot name
 
     case 360:
       res.sendStatus(401);
       break;
 
+    //Bad Request: Password not match
+
     case 361:
       res.sendStatus(402);
       break;
+
+    //Bad Request: Missing message
 
     case 369:
       res.sendStatus(403);
