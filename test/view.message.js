@@ -4,7 +4,7 @@ var express = require('express');
 var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
 var testUtil = require('./common/testutil.js');
-var health = require('../atmessager/views/health.js');
+var health = require('../atmessager/views/message.js');
 
 var nconf = require('nconf');
 nconf.argv()
@@ -15,9 +15,11 @@ var app = testUtil.configExpress(express());
 
 var request = supertest(app);
 
+app.get('/message',message.sendMessage);
+
 exports['Check view health'] = function(test){
 
-	request.get('/message').end(function(err,res)){
+	request.get('/message').end(function(err,res){
 
   test.equal(err,null,'It should not had any error!');
 
@@ -25,7 +27,7 @@ exports['Check view health'] = function(test){
 
 	test.done();
 
-	}
+});
 }
 
 exports['Test send message'] = {
