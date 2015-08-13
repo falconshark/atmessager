@@ -9,7 +9,7 @@ nconf.file('bots', __dirname + '/../config/bots.json')
 var healthCheck = function(req,res) {
 
     res.sendStatus(200);
-    
+
 };
 
 function sendMessage(req,res){
@@ -21,18 +21,31 @@ function sendMessage(req,res){
 
   var vaildResult = vaildMessage(receiver,message,botname,password);
 
-  if(vaildResult['error'] === 361){
+  switch (vaildResult['error']) {
 
-    res.sendStatus(403);
+    case 333:
+      res.sendStatus(400);
+      break;
+
+    case 360:
+      res.sendStatus(401);
+      break;
+
+    case 361:
+      res.sendStatus(402);
+      break;
+
+    case 369:
+      res.sendStatus(403);
+      break;
   }
-
 }
 
 function vaildMessage(receiver,message,botname,password){
 
   if(message === undefined){
 
-    return {error:361};
+    return {error:369};
   }
 
 }
