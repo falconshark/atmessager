@@ -4,13 +4,13 @@ var logger = require('log4js').getLogger('Unit-Test');
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json')
-     .file('test', __dirname + '/../../test/config.json');
+
+var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
 
 var healthCheck = function(req,res) {
 
     res.sendStatus(200);
-
-};
+}
 
 function sendMessage(req,res){
 
@@ -18,8 +18,9 @@ function sendMessage(req,res){
   var message = req.body.message;
   var botname = req.body.botname;
   var password = req.body.password;
+  var testMode = req.body.testMode;
 
-  var vaildResult = vaildMessage(receiver,message,botname,password);
+  var vaildResult = vaildMessage(receiver,message,botname,password,testMode);
 
   switch (vaildResult['error']) {
 
@@ -39,15 +40,6 @@ function sendMessage(req,res){
       res.sendStatus(403);
       break;
   }
-}
-
-function vaildMessage(receiver,message,botname,password){
-
-  if(message === undefined){
-
-    return {error:369};
-  }
-
 }
 
 module.exports = {
