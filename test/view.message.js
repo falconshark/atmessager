@@ -67,7 +67,7 @@ exports['Test send message'] = {
 		.send({'receiver':'Hello Man',
 		'botname':botname,
 		'message':'Hello World!',
-		'password':password
+		'password':password,
 	  'testMode':true})
 		.end(function(err,res){
 
