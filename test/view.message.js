@@ -38,14 +38,15 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
+		var username = nconf.get('message').username;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
 		.send({'receiver':receiver,
 		'botname':botname,
+		'username':username,
 		'message':'Hello World!',
-		'password':password,
-		'testMode':true})
+		'password':password})
 		.end(function(err,res){
 
 		  test.equal(err,null,'It should not had any error!')
@@ -67,8 +68,8 @@ exports['Test send message'] = {
 		.send({'receiver':'Hello Man',
 		'botname':botname,
 		'message':'Hello World!',
-		'password':password,
-	  'testMode':true})
+		'username':username,
+		'password':password})
 		.end(function(err,res){
 
 			test.equal(res.statusCode,400,'It should return 400!');
@@ -88,8 +89,8 @@ exports['Test send message'] = {
 		.send({'receiver':receiver,
 		'botname':'noBot',
 		'message':'Hello World!',
-		'password':password,
-	  'testMode':true})
+		'username':username,
+		'password':password})
 		.end(function(err,res){
 
 			test.equal(res.statusCode,401,'It should return 401!');
@@ -109,8 +110,7 @@ exports['Test send message'] = {
 		.send({'receiver':receiver,
 		'botname':botname,
 		'message':'Hello World!',
-		'password':'',
-		'testMode':true})
+		'password':''})
 		.end(function(err,res){
 
 			test.equal(res.statusCode,402,'It should return 402!');
@@ -129,8 +129,8 @@ exports['Test send message'] = {
 		request.post('/message')
 		.send({'receiver':receiver,
 		'botname':botname,
-		'password':password,
-	  'testMode':true})
+		'username':username,
+		'password':password})
 		.end(function(err,res){
 
 			test.equal(res.statusCode,403,'It should return 403!');
