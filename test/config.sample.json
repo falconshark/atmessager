@@ -2,6 +2,7 @@
     "message":{
       "receiver":"12345678",
       "botname":"testBot",
+      "sender":"tester",
       "token":"123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
       "password":"123456789"
   }
