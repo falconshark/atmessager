@@ -49,6 +49,8 @@ exports['Test send message'] = {
 		'password':password})
 		.end(function(err,res){
 
+			logger.debug('The http status of message view: ' + res.statusCode );
+
 		  test.equal(err,null,'It should not had any error!')
 
 			test.equal(res.statusCode,201,'It should return 201!');
@@ -73,6 +75,8 @@ exports['Test send message'] = {
 		'password':password})
 		.end(function(err,res){
 
+			logger.debug('The http status of message view: ' + res.statusCode );
+
 			test.equal(res.statusCode,400,'It should return 400!');
 
 			test.done();
@@ -94,6 +98,8 @@ exports['Test send message'] = {
 		'sender':sender,
 		'password':password})
 		.end(function(err,res){
+
+			logger.debug('The http status of message view: ' + res.statusCode );
 
 			test.equal(res.statusCode,401,'It should return 401!');
 
@@ -117,6 +123,8 @@ exports['Test send message'] = {
 		'password':password})
 		.end(function(err,res){
 
+			logger.debug('The http status of message view: ' + res.statusCode );
+
 			test.equal(res.statusCode,406,'It should return 406!');
 
 			test.done();
@@ -138,6 +146,8 @@ exports['Test send message'] = {
 		'password':''})
 		.end(function(err,res){
 
+			logger.debug('The http status of message view: ' + res.statusCode );
+
 			test.equal(res.statusCode,402,'It should return 402!');
 
 			test.done();
@@ -158,6 +168,8 @@ exports['Test send message'] = {
 		'sender':sender,
 		'password':password})
 		.end(function(err,res){
+
+			logger.debug('The http status of message view: ' + res.statusCode );
 
 			test.equal(res.statusCode,403,'It should return 403!');
 
