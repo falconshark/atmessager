@@ -113,11 +113,11 @@ exports['Test send message'] = {
 		.send({'receiver':receiver,
 		'botname':botname,
 		'message':'Hello World!',
-		'sender':sender,
+		'sender':'nobody',
 		'password':password})
 		.end(function(err,res){
 
-			test.equal(res.statusCode,401,'It should return 401!');
+			test.equal(res.statusCode,406,'It should return 406!');
 
 			test.done();
 
