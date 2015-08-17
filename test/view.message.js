@@ -62,6 +62,7 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
+		var username = nconf.get('message').username;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
@@ -83,6 +84,7 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
+		var username = nconf.get('message').username;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
@@ -104,6 +106,7 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
+		var username = nconf.get('message').username;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
@@ -124,6 +127,7 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
+		var username = nconf.get('message').username;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
