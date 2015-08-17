@@ -21,6 +21,11 @@ function vaildMessage(receiver,message,botname,sender,password){
     return {error:333};
   }
 
+  if(nconf.get(sender) === undefined){
+
+    return {error:380};
+  }
+
   //If bot not found, return error code 360
 
   if(nconf.get(botname) === undefined){
@@ -30,7 +35,8 @@ function vaildMessage(receiver,message,botname,sender,password){
 
   //If password missmatch, return error code 361
 
-  if(password !== nconf.get(sender).password){
+  if(password !== nconf.get(sender).password1 &&
+     password !== nconf.get(sender).password2){
 
     return {error:361};
   }
