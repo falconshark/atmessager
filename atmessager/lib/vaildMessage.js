@@ -21,6 +21,8 @@ function vaildMessage(receiver,message,botname,sender,password){
     return {error:333};
   }
 
+  //If sender not found, return error code 380
+
   if(nconf.get(sender) === undefined){
 
     return {error:380};
@@ -40,6 +42,11 @@ function vaildMessage(receiver,message,botname,sender,password){
 
     return {error:361};
   }
+
+  //If there are not any error, return null error
+
+  return {error:null};
+
 }
 
 module.exports = {
