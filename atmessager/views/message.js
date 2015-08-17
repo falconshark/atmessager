@@ -17,10 +17,12 @@ function sendMessage(req,res){
   var receiver = req.body.receiver;
   var message = req.body.message;
   var botname = req.body.botname;
-  var username = req.body.username;
+  var sender = req.body.sender;
   var password = req.body.password;
 
-  var vaildResult = vaildMessage(receiver,message,botname,username,password);
+  var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+
+  logger.info('Return error code:', vaildResult['error'] );
 
   switch (vaildResult['error']) {
 
@@ -36,6 +38,12 @@ function sendMessage(req,res){
       res.sendStatus(401);
       break;
 
+    //Bad Request: Sender not found
+
+    case 380:
+      res.sendStatus(406);
+      break;
+
     //Bad Request: Password not match
 
     case 361:
@@ -47,6 +55,7 @@ function sendMessage(req,res){
     case 369:
       res.sendStatus(403);
       break;
+
   }
 }
 
