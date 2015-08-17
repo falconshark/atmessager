@@ -1,11 +1,9 @@
-var request = require('request');
-var promise = require('promised-io/promise');
-var logger = require('log4js').getLogger('Unit-Test');
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json');
 
 var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
+var telegram = require(__dirname + '/../lib/telegram').sendMessage;
 
 var healthCheck = function(req,res) {
 
@@ -21,8 +19,6 @@ function sendMessage(req,res){
   var password = req.body.password;
 
   var vaildResult = vaildMessage(receiver,message,botname,sender,password);
-
-  logger.info('Return error code:', vaildResult['error'] );
 
   switch (vaildResult['error']) {
 
@@ -56,6 +52,8 @@ function sendMessage(req,res){
       res.sendStatus(403);
       break;
 
+    case null:
+      res.sendStatus(201);
   }
 }
 
