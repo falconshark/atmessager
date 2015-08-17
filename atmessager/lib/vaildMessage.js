@@ -5,7 +5,7 @@ nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json')
      .file('senders', __dirname + '/../config/senders.json');
 
-function vaildMessage(receiver,message,botname,username,password){
+function vaildMessage(receiver,message,botname,sender,password){
 
   //If miss message, return error code 369
 
@@ -30,7 +30,7 @@ function vaildMessage(receiver,message,botname,username,password){
 
   //If password missmatch, return error code 361
 
-  if(password !== nconf.get(username).password){
+  if(password !== nconf.get(sender).password){
 
     return {error:361};
   }

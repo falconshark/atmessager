@@ -38,13 +38,13 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
-		var username = nconf.get('message').username;
+		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
 		.send({'receiver':receiver,
 		'botname':botname,
-		'username':username,
+		'sender':sender,
 		'message':'Hello World!',
 		'password':password})
 		.end(function(err,res){
@@ -62,14 +62,14 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
-		var username = nconf.get('message').username;
+		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
 		.send({'receiver':'Hello Man',
 		'botname':botname,
 		'message':'Hello World!',
-		'username':username,
+		'sender':sender,
 		'password':password})
 		.end(function(err,res){
 
@@ -84,14 +84,36 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
-		var username = nconf.get('message').username;
+		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
 		.send({'receiver':receiver,
 		'botname':'noBot',
 		'message':'Hello World!',
-		'username':username,
+		'sender':sender,
+		'password':password})
+		.end(function(err,res){
+
+			test.equal(res.statusCode,401,'It should return 401!');
+
+			test.done();
+
+		});
+	},
+
+	'Test send message failed(wrong sender)':function(test){
+
+		var receiver = nconf.get('message').receiver;
+		var botname  = nconf.get('message').botname;
+		var sender = nconf.get('message').sender;
+		var password = nconf.get('message').password;
+
+		request.post('/message')
+		.send({'receiver':receiver,
+		'botname':botname,
+		'message':'Hello World!',
+		'sender':sender,
 		'password':password})
 		.end(function(err,res){
 
@@ -106,7 +128,7 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
-		var username = nconf.get('message').username;
+		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
@@ -127,13 +149,13 @@ exports['Test send message'] = {
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
-		var username = nconf.get('message').username;
+		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
 		request.post('/message')
 		.send({'receiver':receiver,
 		'botname':botname,
-		'username':username,
+		'sender':sender,
 		'password':password})
 		.end(function(err,res){
 
