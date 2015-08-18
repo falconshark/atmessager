@@ -3,7 +3,7 @@ nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json');
 
 var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
-var telegram = require(__dirname + '/../lib/telegram').sendMessage;
+var telegram = require(__dirname + '/../lib/telegram');
 
 var healthCheck = function(req,res) {
 
@@ -53,6 +53,7 @@ function sendMessage(req,res){
       break;
 
     case null:
+      telegram.sendMessage(receiver,message,botname);
       res.sendStatus(201);
   }
 }
