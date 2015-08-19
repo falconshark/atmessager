@@ -1,4 +1,4 @@
-var logger = require('log4js').getLogger('message');
+var logger = require('log4js').getLogger('telegram');
 
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
@@ -7,7 +7,7 @@ nconf.file('bots', __dirname + '/../config/bots.json')
 
 var request = require('request');
 
-function sendMessage(receiver,message,botname){
+function sendMessage(receiver,message,botname,callback){
 
   var chat_id = nconf.get(receiver).chat_id;
   var token = nconf.get(botname).token;
@@ -19,7 +19,7 @@ function sendMessage(receiver,message,botname){
 
         if(err){
             logger.error(err);
-            return {error:381,mes:err};
+            callback(err,null);
         }
 
         logger.info('Message sent!');
@@ -28,7 +28,7 @@ function sendMessage(receiver,message,botname){
 
         logger.info(successMessage);
 
-        return successMessage;
+        callback(null,successMessage);
 
     });
 }
