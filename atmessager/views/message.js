@@ -8,7 +8,7 @@ var telegram = require(__dirname + '/../lib/telegram');
 
 var healthCheck = function(req, res) {
 
-  res.sendStatus(200);
+  res.status(200).send('All right.');
 }
 
 function sendMessage(req, res) {
