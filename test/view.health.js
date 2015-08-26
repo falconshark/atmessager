@@ -16,7 +16,7 @@ exports['Check health view'] = function(test){
 
 	request.get('/').end(function(err,res){
 
-  test.equal(err,null,'It should not had any error!');
+	test.equal(err,null,'It should not had any error!');
 
 	test.equal(res.statusCode,200,'It should return 200!');
 
