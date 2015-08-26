@@ -20,13 +20,23 @@ function sendMessage(receiver,message,botname,callback){
         if(err){
             logger.error(err);
             callback(err,null);
+            return;
+        }
+
+        if(body['error_code']){
+
+            logger.error(body['description']);
+
+            err = {error:body['error_code'],description:body['description']};
+
+            callback(err,null);
+
+            return;
         }
 
         logger.info('Message sent!');
 
         var successMessage = {receiver:receiver,message:message,sendTime:new Date()};
-
-        logger.info(successMessage);
 
         callback(null,successMessage);
 
