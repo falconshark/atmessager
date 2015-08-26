@@ -1,9 +1,16 @@
 var logger = require('log4js').getLogger('telegram');
 
 var nconf = require('nconf');
-nconf.file('bots', __dirname + '/../config/bots.json')
+
+if (process.env.NODE_ENV === 'unit-test'){
+    nconf.file('bots', __dirname + '/../../test/config/bots.json')
+         .file('receviers', __dirname + '/../../test/config/receivers.json')
+         .file('senders', __dirname + '/../../test/config/senders.json');
+}else{
+    nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json')
      .file('senders', __dirname + '/../config/senders.json');
+ }
 
 var request = require('request');
 
