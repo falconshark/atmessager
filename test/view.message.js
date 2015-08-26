@@ -18,8 +18,6 @@ var request = supertest(app);
 app.get('/message', message.healthCheck);
 app.post('/message', message.sendMessage);
 
-process.env.NODE_ENV = 'unit-test';
-
 exports['Check view health'] = function(test) {
 
 	request.get('/message').end(function(err, res) {
@@ -230,7 +228,7 @@ exports['Test send message'] = {
 		request.post('/message')
 			.send({
 				'receiver': receiver,
-				'botname': botname,
+				'botname': 'wrongbot',
 				'sender': sender,
 				'message': 'Hello World!',
 				'password': password
