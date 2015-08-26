@@ -1,7 +1,5 @@
 var nconf = require('nconf');
 var logger = require('log4js').getLogger('message');
-nconf.file('bots', __dirname + '/../config/bots.json')
-  .file('receviers', __dirname + '/../config/receivers.json');
 
 var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
 var telegram = require(__dirname + '/../lib/telegram');
