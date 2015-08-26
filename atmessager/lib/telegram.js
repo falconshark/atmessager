@@ -24,6 +24,8 @@ function sendMessage(receiver,message,botname,callback){
       form:{chat_id:chat_id,text:message}},
       function(err,res,body){
 
+         body = JSON.parse(body);
+
         if(err){
             logger.error(err);
             callback(err,null);
