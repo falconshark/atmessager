@@ -1,0 +1,9 @@
+{
+    "message":{
+      "receiver":"tester1",
+      "botname":"testBot",
+      "sender":"tester2",
+      "token":"123456789:ABCDEfghyjklmnopQ",
+      "password":"123456789"
+  }
+}
