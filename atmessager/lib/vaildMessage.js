@@ -1,6 +1,13 @@
 var logger = require('log4js').getLogger('vaildMessage');
 
 var nconf = require('nconf');
+
+if (process.env.NODE_ENV === 'unit-test'){
+    nconf.file('bots', __dirname + '/config/bots.json')
+         .file('receviers', __dirname + '/config/receivers.json')
+         .file('senders', __dirname + '/config/senders.json');
+}
+
 nconf.file('bots', __dirname + '/../config/bots.json')
      .file('receviers', __dirname + '/../config/receivers.json')
      .file('senders', __dirname + '/../config/senders.json');
