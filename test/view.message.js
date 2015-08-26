@@ -34,7 +34,7 @@ exports['Check view health'] = function(test){
 
 exports['Test send message'] = {
 
-	'Test send message success':function(test){
+	'Test send message success(English)':function(test){
 
 		var receiver = nconf.get('message').receiver;
 		var botname  = nconf.get('message').botname;
@@ -52,6 +52,32 @@ exports['Test send message'] = {
 			logger.debug('The http status of message view: ' + res.statusCode );
 
 		  test.equal(err,null,'It should not had any error!')
+
+			test.equal(res.statusCode,201,'It should return 201!');
+
+			test.done();
+
+		});
+	},
+
+	'Test send message success(Chinese)':function(test){
+
+		var receiver = nconf.get('message').receiver;
+		var botname  = nconf.get('message').botname;
+		var sender = nconf.get('message').sender;
+		var password = nconf.get('message').password;
+
+		request.post('/message')
+		.send({'receiver':receiver,
+		'botname':botname,
+		'sender':sender,
+		'message':'你好世界！',
+		'password':password})
+		.end(function(err,res){
+
+			logger.debug('The http status of message view: ' + res.statusCode );
+
+		  	test.equal(err,null,'It should not had any error!')
 
 			test.equal(res.statusCode,201,'It should return 201!');
 
@@ -176,5 +202,5 @@ exports['Test send message'] = {
 			test.done();
 
 		});
-	}
+	},
 }
