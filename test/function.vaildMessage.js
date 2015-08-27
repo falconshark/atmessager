@@ -20,6 +20,8 @@ exports['Test vaild message'] = {
 
 		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
 
+		logger.debug('ErrorCode: '+ vaildResult['error']);
+
 		test.equal(vaildResult['error'],333,'The error code should be 333! ');
 
 		test.done();
@@ -36,6 +38,8 @@ exports['Test vaild message'] = {
 
 		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
 
+		logger.debug('ErrorCode: '+ vaildResult['error']);
+
 		test.equal(vaildResult['error'],369,'The error code should be 369! ');
 
 		test.done();
@@ -50,8 +54,9 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-
 		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+
+		logger.debug('ErrorCode: '+ vaildResult['error']);
 
 		test.equal(vaildResult['error'],360,'The error code should be 360! ');
 
@@ -69,6 +74,8 @@ exports['Test vaild message'] = {
 
 		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
 
+		logger.debug('ErrorCode: '+ vaildResult['error']);
+
 		test.equal(vaildResult['error'],380,'The error code should be 380! ');
 
 		test.done();
@@ -85,6 +92,8 @@ exports['Test vaild message'] = {
 
 		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
 
+		logger.debug('ErrorCode: '+ vaildResult['error']);
+
 		test.equal(vaildResult['error'],361,'The error code should be 361! ');
 
 		test.done();
@@ -100,6 +109,8 @@ exports['Test vaild message'] = {
 		var password = nconf.get('message').password;
 
 		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+
+		logger.debug('ErrorCode: '+ vaildResult['error']);
 
 		test.equal(vaildResult['error'],null,'The error should be null! ');
 
