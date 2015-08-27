@@ -15,7 +15,7 @@ function vaildMessage(receiver,message,botname,sender,password){
 
   //If miss message, return error code 369
 
-  if(message === undefined){
+  if(message === undefined || message === null){
 
     return {error:369};
   }
