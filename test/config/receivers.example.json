@@ -1,5 +1,9 @@
 {
-  "The Receiver Name":{
-    "chat_id":"1234567"
-  }
+    "receiver": {
+		"chat_id": "1234567"
+	},
+
+    "wrong_receiver": {
+		"chat_id": "123456789"
+	}
 }
