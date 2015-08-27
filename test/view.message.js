@@ -243,4 +243,30 @@ exports['Test send message'] = {
 
 			});
 	},
+
+	'Test send message failed(receiver not existed)': function(test) {
+
+		var receiver = nconf.get('message').receiver;
+		var botname = nconf.get('message').botname;
+		var sender = nconf.get('message').sender;
+		var password = nconf.get('message').password;
+
+		request.post('/message')
+			.send({
+				'receiver': 'wrong_receiver',
+				'botname': botname,
+				'sender': sender,
+				'message': 'Hello World!',
+				'password': password
+			})
+			.end(function(err, res) {
+
+				logger.debug('The http status of message view: ' + res.statusCode);
+
+				test.equal(res.statusCode, 407, 'It should return 407!');
+
+				test.done();
+
+			});
+	},
 }
