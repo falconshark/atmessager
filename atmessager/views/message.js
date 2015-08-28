@@ -24,31 +24,31 @@ function sendMessage(req, res) {
     //Bad Request: Wrong receiver name
 
     case 333:
-      res.sendStatus(400);
+      res.status(400).send('Bad Request: Wrong receiver name');
       break;
 
       //Bad Request: Wrong bot name
 
     case 360:
-      res.sendStatus(401);
+      res.status(401).send('Bad Request: Wrong bot name');
       break;
 
       //Bad Request: Sender not found
 
     case 380:
-      res.sendStatus(406);
+      res.status(406).send('Bad Request: Sender not found');
       break;
 
       //Bad Request: Password not match
 
     case 361:
-      res.sendStatus(402);
+      res.status(402).send('Bad Request: Password not match');
       break;
 
       //Bad Request: Missing message
 
     case 369:
-      res.sendStatus(403);
+      res.status(403).send('Bad Request: Missing message');
       break;
 
     case null:
@@ -57,13 +57,13 @@ function sendMessage(req, res) {
 
         if(err){
             logger.error(err);
-            res.sendStatus(407);
+            res.status(407).send(JSON.stringify(err));
             return;
         }
 
         logger.info(message);
 
-        res.sendStatus(201);
+        res.status(201).send(JSON.stringify(message));
     });
   }
 }
