@@ -22,12 +22,12 @@ function sendMessage(receiver, message, botname, callback) {
 	} catch (ex) {
 
 		err = {
-			description: 'chat_id or token not found'
+			error:'receiver or bot not found!'
 		};
 
 		logger.error(err);
 
-		callback(err);
+		callback(err,null);
 
         return;
 	}
