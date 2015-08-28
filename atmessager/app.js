@@ -1,5 +1,4 @@
 var express = require('express');
-var express_logger = require('express-logger');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var nconf = require('nconf');
@@ -16,7 +15,6 @@ var server = require('./server.js');
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
     app.set('views',__dirname+'/views');
-    app.use(express_logger({path: logfile_path }));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use('/', router);
