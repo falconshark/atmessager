@@ -9,7 +9,8 @@
     "nconf":"0.7.1",
     "express":"4.13.1",
     "body-parser":"1.13.3",
-    "promised-io":"0.3.5"
+    "express-logger":"0.0.3"
+	
   },
   "license": "Apache-2.0"
 }
