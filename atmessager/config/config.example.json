@@ -1,5 +1,9 @@
 {
-  "server":{
-    "port":"3000"
-  }
+	"server": {
+		"port": "3000"
+	},
+
+    "logfile":{
+        "path":"/var/log/atm"
+    }
 }
