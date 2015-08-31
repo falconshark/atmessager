@@ -1,7 +1,7 @@
 'use strict';
 
 var logger = require('log4js').getLogger('Unit-Test');
-var vaildMessage = require(__dirname + '/../atmessager/lib/vaildMessage').vaildMessage;
+var verifiyMessage = require(__dirname + '/../atmessager/lib/verifiyMessage').verifiyMessage;
 
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/config/bots.json')
@@ -18,7 +18,7 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
 
 		logger.debug('ErrorCode: '+ vaildResult['error']);
 
@@ -36,7 +36,7 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
 
 		logger.debug('ErrorCode: '+ vaildResult['error']);
 
@@ -54,7 +54,7 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
 
 		logger.debug('ErrorCode: '+ vaildResult['error']);
 
@@ -72,7 +72,7 @@ exports['Test vaild message'] = {
 		var sender = 'No this sender';
 		var password = nconf.get('message').password;
 
-		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
 
 		logger.debug('ErrorCode: '+ vaildResult['error']);
 
@@ -90,7 +90,7 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = 'not this password';
 
-		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
 
 		logger.debug('ErrorCode: '+ vaildResult['error']);
 
@@ -108,7 +108,7 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = vaildMessage(receiver,message,botname,sender,password);
+		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
 
 		logger.debug('ErrorCode: '+ vaildResult['error']);
 

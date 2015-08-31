@@ -1,7 +1,7 @@
 var nconf = require('nconf');
 var logger = require('log4js').getLogger('message');
 
-var vaildMessage = require(__dirname + '/../lib/vaildMessage').vaildMessage;
+var verifiyMessage = require(__dirname + '/../lib/verifiyMessage').verifiyMessage;
 var telegram = require(__dirname + '/../lib/telegram');
 
 var healthCheck = function(req, res) {
@@ -17,7 +17,7 @@ function sendMessage(req, res) {
   var sender = req.body.sender;
   var password = req.body.password;
 
-  var vaildResult = vaildMessage(receiver, message, botname, sender, password);
+  var vaildResult = verifiyMessage(receiver, message, botname, sender, password);
 
   switch (vaildResult['error']) {
 
