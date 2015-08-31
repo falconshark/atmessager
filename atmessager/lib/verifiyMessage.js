@@ -1,60 +1,56 @@
-var logger = require('log4js').getLogger('vaildMessage');
+var logger = require('log4js').getLogger('verifiyMessage');
 var nconf = require('nconf');
+nconf.file('bots', __dirname + '/../config/bots.json')
+	.file('receviers', __dirname + '/../config/receivers.json')
+	.file('senders', __dirname + '/../config/senders.json');
 
-if (process.env.NODE_ENV === 'unit-test'){
-    nconf.file('bots', __dirname + '/../../test/config/bots.json')
-         .file('receviers', __dirname + '/../../test/config/receivers.json')
-         .file('senders', __dirname + '/../../test/config/senders.json');
-}else{
-    nconf.file('bots', __dirname + '/../config/bots.json')
-     .file('receviers', __dirname + '/../config/receivers.json')
-     .file('senders', __dirname + '/../config/senders.json');
- }
 
-function vaildMessage(receiver,message,botname,sender,password){
+function verifiyMessage(receiver, message, botname, sender, password) {
 
-  //If miss message, return error code 369
+	//If miss message, return error message
 
-  if(message === undefined || message === null){
+	if (message === undefined || message === null) {
 
-    return {error:369};
-  }
+		return 'Bad Request: Missing message';
+	}
 
-  //If receiver not found, return error code 333
+	//If receiver not found, return error message
 
-  if(nconf.get(receiver) === undefined){
+	if (nconf.get(receiver) === undefined) {
 
-    return {error:333};
-  }
+		return 'Bad Request: Wrong receiver name';
+	}
 
-  //If sender not found, return error code 380
+	//If sender not found, return error message
 
-  if(nconf.get(sender) === undefined){
+	if (nconf.get(sender) === undefined) {
 
-    return {error:380};
-  }
+		return {
+			'Bad Request: Sender not found'
+		};
+	}
 
-  //If bot not found, return error code 360
+	//If bot not found, return error message
 
-  if(nconf.get(botname) === undefined){
+	if (nconf.get(botname) === undefined) {
 
-    return {error:360};
-  }
+		return 'Bad Request: Wrong bot name';
+	}
 
-  //If password missmatch, return error code 361
+	//If password missmatch, return error message
 
-  if(password !== nconf.get(sender).password1 &&
-     password !== nconf.get(sender).password2){
+	if (password !== nconf.get(sender).password1 &&
+		password !== nconf.get(sender).password2) {
 
-    return {error:361};
-  }
+		return 'Bad Request: Password not match';
+	}
 
-  //If there are not any error, return null error
+	//If there are not any error, return Success
 
-  return {error:null};
+	return 'Message verified!';
 
 }
 
 module.exports = {
-  'vaildMessage':vaildMessage
+	'verifiyMessage': verifiyMessage
 };
