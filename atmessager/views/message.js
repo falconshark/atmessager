@@ -19,39 +19,39 @@ function sendMessage(req, res) {
 
   var vaildResult = verifiyMessage(receiver, message, botname, sender, password);
 
-  switch (vaildResult['error']) {
+  switch (vaildResult) {
 
     //Bad Request: Wrong receiver name
 
-    case 333:
-      res.status(400).send('Bad Request: Wrong receiver name');
+    case 'Bad Request: Wrong receiver name':
+      res.status(400).send(vaildResult);
       break;
 
       //Bad Request: Wrong bot name
 
-    case 360:
-      res.status(401).send('Bad Request: Wrong bot name');
+    case 'Bad Request: Wrong bot name':
+      res.status(401).send(vaildResult);
       break;
 
       //Bad Request: Sender not found
 
-    case 380:
-      res.status(406).send('Bad Request: Sender not found');
+    case 'Bad Request: Sender not found':
+      res.status(406).send(vaildResult);
       break;
 
       //Bad Request: Password not match
 
-    case 361:
-      res.status(402).send('Bad Request: Password not match');
+    case 'Bad Request: Password not match':
+      res.status(402).send(vaildResult);
       break;
 
       //Bad Request: Missing message
 
-    case 369:
-      res.status(403).send('Bad Request: Missing message');
+    case 'Bad Request: Missing message':
+      res.status(403).send(vaildResult);
       break;
 
-    case null:
+    case 'Message verified':
 
       telegram.sendMessage(receiver, message, botname,function(err,message){
 
