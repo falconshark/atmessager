@@ -25,7 +25,7 @@ function verifiyMessage(receiver, message, botname, sender, password) {
 
 	if (nconf.get(sender) === undefined) {
 
-		return 'Bad Request: Sender not found'；
+		return 'Bad Request: Sender not found';
 	}
 
 	//If bot not found, return error message
