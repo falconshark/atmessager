@@ -18,11 +18,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
 
-		logger.debug('ErrorCode: '+ vaildResult['error']);
+		logger.debug('verifiy result: '+ verifiyResult);
 
-		test.equal(vaildResult['error'],333,'The error code should be 333! ');
+		test.equal(verifiyResult,'Bad Request: Wrong receiver name','The error message not match! ');
 
 		test.done();
 
@@ -36,11 +36,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
 
-		logger.debug('ErrorCode: '+ vaildResult['error']);
+		logger.debug('verifiy result: '+ verifiyResult);
 
-		test.equal(vaildResult['error'],369,'The error code should be 369! ');
+		test.equal(verifiyResult,'Bad Request: Missing message','The error message not match! ');
 
 		test.done();
 
@@ -54,11 +54,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
 
-		logger.debug('ErrorCode: '+ vaildResult['error']);
+		logger.debug('verifiy result: '+ verifiyResult);
 
-		test.equal(vaildResult['error'],360,'The error code should be 360! ');
+		test.equal(verifiyResult,'Bad Request: Wrong bot name','The error code should be 360! ');
 
 		test.done();
 
@@ -72,11 +72,11 @@ exports['Test vaild message'] = {
 		var sender = 'No this sender';
 		var password = nconf.get('message').password;
 
-		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
 
-		logger.debug('ErrorCode: '+ vaildResult['error']);
+		logger.debug('verifiy result: '+ verifiyResult);
 
-		test.equal(vaildResult['error'],380,'The error code should be 380! ');
+		test.equal(verifiyResult,'Bad Request: Sender not found','The error message not match! ');
 
 		test.done();
 
@@ -90,11 +90,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = 'not this password';
 
-		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
 
-		logger.debug('ErrorCode: '+ vaildResult['error']);
+		logger.debug('verifiy result: '+ verifiyResult);
 
-		test.equal(vaildResult['error'],361,'The error code should be 361! ');
+		test.equal(verifiyResult,'Bad Request: Password not match','The error message not match! ');
 
 		test.done();
 
@@ -108,11 +108,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var vaildResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
 
-		logger.debug('ErrorCode: '+ vaildResult['error']);
+		logger.debug('verifiy result: '+ verifiyResult);
 
-		test.equal(vaildResult['error'],null,'The error should be null! ');
+		test.equal(verifiyResult,'Message verified','The Message should be verified!');
 
 		test.done();
 
