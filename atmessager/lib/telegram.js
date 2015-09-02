@@ -1,16 +1,9 @@
 var logger = require('log4js').getLogger('telegram');
 
 var nconf = require('nconf');
-
-if (process.env.NODE_ENV === 'unit-test') {
-	nconf.file('bots', __dirname + '/../../test/config/bots.json')
-		.file('receviers', __dirname + '/../../test/config/receivers.json')
-		.file('senders', __dirname + '/../../test/config/senders.json');
-} else {
-	nconf.file('bots', __dirname + '/../config/bots.json')
-		.file('receviers', __dirname + '/../config/receivers.json')
-		.file('senders', __dirname + '/../config/senders.json');
-}
+nconf.file('bots', __dirname + '/../config/bots.json')
+	 .file('receviers', __dirname + '/../config/receivers.json')
+	 .file('senders', __dirname + '/../config/senders.json');
 
 var request = require('request');
 
@@ -22,14 +15,14 @@ function sendMessage(receiver, message, botname, callback) {
 	} catch (ex) {
 
 		err = {
-			error:'receiver or bot not found!'
+			error: 'receiver or bot not found!'
 		};
 
 		logger.error(err);
 
-		callback(err,null);
+		callback(err, null);
 
-        return;
+		return;
 	}
 
 	request.post({
