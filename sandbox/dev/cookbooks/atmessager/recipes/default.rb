@@ -16,6 +16,7 @@ bash 'Create log folder' do
     code <<-EOC
     cd /var/log/
     mkdir atm
+    chown -R vagrant:vagrant ./atm
   EOC
 end
 
