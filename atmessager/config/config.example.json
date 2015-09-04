@@ -1,5 +1,11 @@
 {
 	"server": {
 		"port": "3000"
+	},
+	"access_log":{
+		"path": "/var/log/atm/atm.access_log"
+	},
+	"app_log":{
+		"path": "/var/log/atm/atm.access_log"
 	}
 }
