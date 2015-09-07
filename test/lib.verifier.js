@@ -5,8 +5,15 @@ var verifiyMessage = require(__dirname + '/../atmessager/lib/verifier').verifiyM
 
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/config/bots.json')
-	.file('receviers', __dirname + '/config/receivers.json')
+	.file('senders',__dirname + '/config/senders.json')
+	.file('receivers', __dirname + '/config/receivers.json')
 	.file('testconfig', __dirname + '/config/testconfig.json');
+
+var config = {
+	receivers: nconf.get('receivers'),
+	bots: nconf.get('bots'),
+	senders:nconf.get('senders')
+};
 
 exports['Test vaild message'] = {
 
@@ -18,11 +25,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-		logger.debug('verifiy result: '+ verifiyResult);
+		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult,'Bad Request: Wrong receiver name','The error message not match! ');
+		test.equal(verifiyResult, 'Bad Request: Wrong receiver name', 'The error message not match! ');
 
 		test.done();
 
@@ -36,11 +43,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-		logger.debug('verifiy result: '+ verifiyResult);
+		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult,'Bad Request: Missing message','The error message not match! ');
+		test.equal(verifiyResult, 'Bad Request: Missing message', 'The error message not match! ');
 
 		test.done();
 
@@ -54,11 +61,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-		logger.debug('verifiy result: '+ verifiyResult);
+		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult,'Bad Request: Wrong bot name','The error code should be 360! ');
+		test.equal(verifiyResult, 'Bad Request: Wrong bot name', 'The error code should be 360! ');
 
 		test.done();
 
@@ -72,11 +79,11 @@ exports['Test vaild message'] = {
 		var sender = 'No this sender';
 		var password = nconf.get('message').password;
 
-		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-		logger.debug('verifiy result: '+ verifiyResult);
+		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult,'Bad Request: Sender not found','The error message not match! ');
+		test.equal(verifiyResult, 'Bad Request: Sender not found', 'The error message not match! ');
 
 		test.done();
 
@@ -90,11 +97,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = 'not this password';
 
-		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-		logger.debug('verifiy result: '+ verifiyResult);
+		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult,'Bad Request: Password not match','The error message not match! ');
+		test.equal(verifiyResult, 'Bad Request: Password not match', 'The error message not match! ');
 
 		test.done();
 
@@ -108,11 +115,11 @@ exports['Test vaild message'] = {
 		var sender = nconf.get('message').sender;
 		var password = nconf.get('message').password;
 
-		var verifiyResult = verifiyMessage(receiver,message,botname,sender,password);
+		var verifiyResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-		logger.debug('verifiy result: '+ verifiyResult);
+		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult,'Message verified','The Message should be verified!');
+		test.equal(verifiyResult, 'Message verified', 'The Message should be verified!');
 
 		test.done();
 
