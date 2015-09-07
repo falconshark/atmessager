@@ -4,89 +4,94 @@ var verifiyMessage = require(__dirname + '/../lib/verifier').verifiyMessage;
 var telegram = require(__dirname + '/../lib/telegram');
 
 var config = {
-	receivers: nconf.get('receivers'),
-	senders: nconf.get('senders'),
-	bots: nconf.get('bots')
+  receivers: nconf.get('receivers'),
+  senders: nconf.get('senders'),
+  bots: nconf.get('bots')
 };
 
 var healthCheck = function(req, res) {
 
-	res.status(200).send('OK');
+  res.status(200).send('OK');
 }
 
 function sendMessage(req, res) {
 
-	var receiver = req.body.receiver;
-	var message = req.body.message;
-	var botname = req.body.botname;
-	var sender = req.body.sender;
-	var password = req.body.password;
+  var receiver = req.body.receiver;
+  var message = req.body.message;
+  var botname = req.body.botname;
+  var sender = req.body.sender;
+  var password = req.body.password;
 
-	var vaildResult = verifiyMessage(config, receiver, message, botname, sender, password);
+  var vaildResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
-	switch (vaildResult) {
+  switch (vaildResult) {
 
-		//Bad Request: Wrong receiver name
+    case 'Error: Wrong receiver name':
+      res.status(401).send({
+        error_code: 401,
+        description: vaildResult
+      });
+      break;
 
-		case 'Bad Request: Wrong receiver name':
-			res.status(400).send(vaildResult);
-			break;
+    case 'Error: Wrong bot name':
+      res.status(401).send({
+        error_code: 401,
+        description: vaildResult
+      });
+      break;
 
-			//Bad Request: Wrong bot name
+    case 'Error: Sender not found':
+      res.status(401).send({
+        error_code: 401,
+        description: vaildResult
+      });
+      break;
 
-		case 'Bad Request: Wrong bot name':
-			res.status(400).send(vaildResult);
-			break;
+    case 'Error: Password not match':
+      res.status(401).send({
+        error_code: 401,
+        description: vaildResult
+      });
+      break;
 
-			//Bad Request: Sender not found
+    case 'Error: Missing message':
+      res.status(400).send({
+        error_code: 400,
+        description: vaildResult
+      });
+      break;
 
-		case 'Bad Request: Sender not found':
-			res.status(400).send(vaildResult);
-			break;
+    case 'Message verified':
 
-			//Bad Request: Password not match
+      logger.info('Sending Message....');
+      logger.info('Message:')
+      logger.info({
+        sender: sender,
+        receiver: receiver,
+        botname: botname,
+        message: message
+      })
 
-		case 'Bad Request: Password not match':
-			res.status(400).send(vaildResult);
-			break;
+      telegram.sendMessage(config, receiver, message, botname, function(err, message) {
 
-			//Bad Request: Missing message
+        if (err) {
+          logger.error(err);
+          res.status(403).send(JSON.stringify(err));
+          return;
+        }
 
-		case 'Bad Request: Missing message':
-			res.status(400).send(vaildResult);
-			break;
+        logger.info(message);
 
-		case 'Message verified':
+        res.status(201).send(JSON.stringify(message));
+      });
+      break;
 
-			logger.info('Sending Message....');
-			logger.info('Message:')
-			logger.info({
-				sender: sender,
-				receiver: receiver,
-				botname: botname,
-				message: message
-			})
-
-			telegram.sendMessage(config, receiver, message, botname, function(err, message) {
-
-				if (err) {
-					logger.error(err);
-					res.status(403).send(JSON.stringify(err));
-					return;
-				}
-
-				logger.info(message);
-
-				res.status(201).send(JSON.stringify(message));
-			});
-			break;
-
-		default:
-			res.statusCode(204);
-	}
+    default:
+      res.statusCode(204);
+  }
 }
 
 module.exports = {
-	'healthCheck': healthCheck,
-	'sendMessage': sendMessage
+  'healthCheck': healthCheck,
+  'sendMessage': sendMessage
 };

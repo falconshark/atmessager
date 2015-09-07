@@ -6,28 +6,28 @@ function verifiyMessage(config, receiver, message, botname, sender, password) {
 
 	if (message === undefined || message === null) {
 
-		return 'Bad Request: Missing message';
+		return 'Error: Missing message';
 	}
 
 	//If receiver not found, return error message
 
 	if (config.receivers[receiver] === undefined) {
 
-		return 'Bad Request: Wrong receiver name';
+		return 'Error: Wrong receiver name';
 	}
 
 	//If sender not found, return error message
 
 	if (config.senders[sender] === undefined) {
 
-		return 'Bad Request: Sender not found';
+		return 'Error: Sender not found';
 	}
 
 	//If bot not found, return error message
 
 	if (config.bots[botname] === undefined) {
 
-		return 'Bad Request: Wrong bot name';
+		return 'Error: Wrong bot name';
 	}
 
 	//If password missmatch, return error message
@@ -35,7 +35,7 @@ function verifiyMessage(config, receiver, message, botname, sender, password) {
 	if (password !== config.senders[sender].password1 &&
 		password !== config.senders[sender].password2) {
 
-		return 'Bad Request: Password not match';
+		return 'Error: Password not match';
 	}
 
 	//If there are not any error, return Success
