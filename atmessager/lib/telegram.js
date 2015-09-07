@@ -1,13 +1,7 @@
 var logger = require('log4js').getLogger('APP_LOG');
-
-var nconf = require('nconf');
-nconf.file('bots', __dirname + '/../config/bots.json')
-	 .file('receviers', __dirname + '/../config/receivers.json')
-	 .file('senders', __dirname + '/../config/senders.json');
-
 var request = require('request');
 
-function sendMessage(receiver, message, botname, callback) {
+function sendMessage(config,receiver, message, botname, callback) {
 
 	try {
 		var chat_id = nconf.get(receiver).chat_id;
