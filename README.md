@@ -1,7 +1,7 @@
 ATMessager
 ===
 
-An API which can make sending messages by telegram bot be automatically and simply.
+An web API which can make sending messages by telegram bot be automatically and simply.
 
 Installation
 -----------
@@ -23,7 +23,7 @@ $ npm install
 
 Configuration
 -----------
-Firstly, copy all of the configuration file in config: 
+Before using ATMessager, you should copy and edit all of the configuration file in config: 
 
 ```bash
 $ cp config.example.json config.json
@@ -37,7 +37,7 @@ You can found all of the config file in config folder.
 config.json
 -----------
 
-config.json contain the setting of server and log file path.
+config.json contain the setting of server and log file path. You can change the listen port of ATMessager and where to save log files.
 
 Example:
 
@@ -57,7 +57,7 @@ Example:
 
 bots.json
 -----------
-bots.json contain all of the registed telegram bot name, token and users of each bot.
+bots.json contain all of the registed telegram bot name, token and users of each bot. ATMessager will use these bot name to find the token, and use username and password (In senders.json) to do authentication.
 
 Example:
 
@@ -74,7 +74,7 @@ Example:
 receivers.json
 -----------
 
-receivers.json contain all of the registed user name and chat id.
+receivers.json contain all of the registed user name and chat id. ATMessager will use these receiver name to find their chat id.
 
 Example:
 
@@ -91,7 +91,7 @@ Example:
 senders.json
 -----------
 
-senders.json contain all of the user name and password.
+senders.json contain all of the user name and password. ATMessager will use these username(In bots.json) and password to do authentication.
 
 Example:
 
@@ -104,4 +104,73 @@ Example:
 		}
 	}
 }
+```
+Usage
+-----------
+
+Use this command to start ATMessager:
+
+```bash
+$ node app.js
+``` 
+
+If you want to run it at the background, use forever:
+
+```bash
+$ sudo npm install forever -g
+$ forever start app.js
+```
+
+After start the ATMessager, you can call the API to send message by telegram bot with post method.
+
+Here is an example:
+
+```bash
+curl --data "receiver=sardo & message=hello & botname=atmessager
+& sender=dollars0427 &password=hello123" http://192.168.1.1:3000/message
+```
+
+If success, It will return status code 201, and a JSON object like this:
+
+```json
+{ receiver: 'sardo',
+  botname: 'atmessager',
+  message: 'hello',
+  sendTime: Mon Sep 07 2015 23:17:24 GMT+0800 (HKT) }
+```
+
+Otherwise, It will return status code 401 or 403, and a error object like this:
+
+```json
+{ error_code: 401, description: 'Error: Unauthorized' }
+```
+
+Unit Test
+-----------
+
+You can run the unit-test of this project by using nodeunit.
+
+1.Switch to the test directory. It is in the root directory of project.
+
+2.Install the dependencies:
+
+```bash
+npm install
+```
+
+3.Copy the configuration file and edit it:
+
+```bash
+$ cp testconfig.example.json testconfig.json
+$ cp bots.exmaple.json bots.json
+$ cp receivers.example.json receivers.json
+$ cp senders.example.json senders.json
+```
+
+It is same as configuration part.
+
+3.Run nodeunit to test each part:
+
+```bash
+$ nodeunit testcase.js
 ```
