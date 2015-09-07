@@ -1,6 +1,8 @@
 {
-  "user_id": {
-     "password1": "Sei0wao9",
-     "password2": "Deeh8se6"
-  }
+	"senders": {
+		"user_id": {
+			"password1": "Sei0wao9",
+			"password2": "Deeh8se6"
+		}
+	}
 }

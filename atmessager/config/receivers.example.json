@@ -1,5 +1,7 @@
 {
-  "receiver":{
-    "chat_id":"1234567"
-  }
+	"receiver": {
+		"receiver_name": {
+			"chat_id": "1234567"
+		}
+	}
 }
