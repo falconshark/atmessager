@@ -29,7 +29,7 @@ exports['Test vaild message'] = {
 
 		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult, 'Bad Request: Wrong receiver name', 'The error message not match! ');
+		test.equal(verifiyResult, 'Error: Wrong receiver name', 'The error message not match! ');
 
 		test.done();
 
@@ -47,7 +47,7 @@ exports['Test vaild message'] = {
 
 		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult, 'Bad Request: Missing message', 'The error message not match! ');
+		test.equal(verifiyResult, 'Error: Missing message', 'The error message not match! ');
 
 		test.done();
 
@@ -65,7 +65,7 @@ exports['Test vaild message'] = {
 
 		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult, 'Bad Request: Wrong bot name', 'The error code should be 360! ');
+		test.equal(verifiyResult, 'Error: Wrong bot name', 'The error code should be 360! ');
 
 		test.done();
 
@@ -83,7 +83,7 @@ exports['Test vaild message'] = {
 
 		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult, 'Bad Request: Sender not found', 'The error message not match! ');
+		test.equal(verifiyResult, 'Error: Sender not found', 'The error message not match! ');
 
 		test.done();
 
@@ -101,7 +101,7 @@ exports['Test vaild message'] = {
 
 		logger.debug('verifiy result: ' + verifiyResult);
 
-		test.equal(verifiyResult, 'Bad Request: Password not match', 'The error message not match! ');
+		test.equal(verifiyResult, 'Error: Password not match', 'The error message not match! ');
 
 		test.done();
 

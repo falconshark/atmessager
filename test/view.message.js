@@ -111,7 +111,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 400, 'It should return 400!');
+				test.equal(res.statusCode, 401, 'It should return 401!');
 
 				test.done();
 
@@ -137,7 +137,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 400, 'It should return 401!');
+				test.equal(res.statusCode, 401, 'It should return 401!');
 
 				test.done();
 
@@ -163,7 +163,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 400, 'It should return 400!');
+				test.equal(res.statusCode, 401, 'It should return 401!');
 
 				test.done();
 
@@ -188,7 +188,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 400, 'It should return 402!');
+				test.equal(res.statusCode, 401, 'It should return 401!');
 
 				test.done();
 
@@ -213,7 +213,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 400, 'It should return 403!');
+				test.equal(res.statusCode, 400, 'It should return 400!');
 
 				test.done();
 
