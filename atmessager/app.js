@@ -3,11 +3,9 @@ var bodyParser = require('body-parser');
 var log4js = require('log4js');
 var fs = require('fs');
 var nconf = require('nconf');
-nconf.argv()
-  .env()
-  .file({
-    file: './config/config.json'
-  });
+nconf.file('bots', __dirname + '/config/bots.json')
+	.file('receviers', __dirname + '/config/receivers.json')
+	.file('testconfig', __dirname + '/config/config.json');
 
 var access_log_path = nconf.get('access_log').path;
 var app_log_path = nconf.get('app_log').path;

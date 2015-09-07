@@ -1,8 +1,5 @@
 var fs = require('fs');
 var nconf = require('nconf');
-nconf.argv()
-.env()
-.file({ file: './config/config.json' });
 
 //Require log4js for display running log
 var log4js = require('log4js');
