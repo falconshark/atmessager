@@ -1,7 +1,7 @@
 var logger = require('log4js').getLogger('APP_LOG');
 var request = require('request');
 
-function sendMessage(config,receiver, message, botname, callback) {
+function sendMessage(config, receiver, message, botname, callback) {
 
 	try {
 		var chat_id = nconf.get(receiver).chat_id;
@@ -9,7 +9,7 @@ function sendMessage(config,receiver, message, botname, callback) {
 	} catch (ex) {
 
 		err = {
-			error:null,
+			error: null,
 			description: 'receiver or bot not found!'
 		};
 
