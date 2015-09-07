@@ -13,7 +13,7 @@ Note: This requires Node.js v0.10 to run. If you had not install it , you can do
 2.Switch to the project root directory:
 
 ```bash
-$ cd sqlwathcer
+$ cd atmessager
 ```
 3.Install the dependencies: 
 
@@ -23,7 +23,7 @@ $ npm install
 
 Configuration
 -----------
-1.Copy the configuration file: 
+Firstly, copy all of the configuration file in config: 
 
 ```bash
 $ cp config.example.json config.json
@@ -34,38 +34,74 @@ $ cp senders.example.json senders.json
 
 You can found all of the config file in config folder.
 
-2.If you want to change the port number of ATMessger,
-you can change it in config.json:
+config.json
+-----------
+
+config.json contain the setting of server and log file path.
+
+Example:
 
 ```json
 {
 	"server": {
 		"port": "3000"
-	}
-}
-
-```
-
-3.You should input the name,token and username of your telegram bot to bots.json. These users wll be used for authorization.
-
-```json
-{
-	"botname": {
-		"token": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
-		"users": ["user1", "user2"]
+	},
+	"access_log":{
+		"path": "/var/log/atm/atm.access_log"
+	},
+	"app_log":{
+		"path": "/var/log/atm/atm.access_log"
 	}
 }
 ```
 
-4.You should input the receiver name and chat id to receivers.json.
+bots.json
+-----------
+bots.json contain all of the registed telegram bot name, token and users of each bot.
+
+Example:
 
 ```json
 {
-  "receiver":{
-    "chat_id":"1234567"
-  }
-} 
+	"bots": {
+		"botname": {
+			"token": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+			"users": ["user1", "user2"]
+		}
+	}
+}
+```
+receivers.json
+-----------
+
+receivers.json contain all of the registed user name and chat id.
+
+Example:
+
+```json
+{
+	"receiver": {
+		"receiver_name": {
+			"chat_id": "1234567"
+		}
+	}
+}
 ```
 
-**Still ongoing....**
-===
+senders.json
+-----------
+
+senders.json contain all of the user name and password.
+
+Example:
+
+```json
+{
+	"senders": {
+		"user_id": {
+			"password1": "Sei0wao9",
+			"password2": "Deeh8se6"
+		}
+	}
+}
+```
