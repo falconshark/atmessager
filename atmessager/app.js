@@ -17,7 +17,7 @@ log4js.loadAppender('file');
 log4js.addAppender(log4js.appenders.file(access_log_path), 'ACCESS_LOG');
 log4js.addAppender(log4js.appenders.file(app_log_path), 'APP_LOG');
 
-var logger = log4js.getLogger('ACCESS_LOG');
+var logger = log4js.getLogger('APP_LOG');
 
 var app = new express();
 
@@ -27,7 +27,7 @@ var server = require('./server.js');
 
 app.set('views', __dirname + '/views');
 app.use(bodyParser.json());
-app.use(log4js.connectLogger(logger,{level:'auto'}));
+app.use(log4js.connectLogger(log4js.getLogger('ACCESS_LOG'),{level:'auto'}));
 
 app.use(bodyParser.urlencoded({
   extended: false

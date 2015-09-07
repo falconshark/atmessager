@@ -1,74 +1,83 @@
 var nconf = require('nconf');
-var logger = require('log4js').getLogger('message');
+var logger = require('log4js').getLogger('APP_LOG');
 
 var verifiyMessage = require(__dirname + '/../lib/verifiyMessage').verifiyMessage;
 var telegram = require(__dirname + '/../lib/telegram');
 
 var healthCheck = function(req, res) {
 
-  res.status(200).send('All right.');
+	res.status(200).send('All right.');
 }
 
 function sendMessage(req, res) {
 
-  var receiver = req.body.receiver;
-  var message = req.body.message;
-  var botname = req.body.botname;
-  var sender = req.body.sender;
-  var password = req.body.password;
+	var receiver = req.body.receiver;
+	var message = req.body.message;
+	var botname = req.body.botname;
+	var sender = req.body.sender;
+	var password = req.body.password;
 
-  var vaildResult = verifiyMessage(receiver, message, botname, sender, password);
+	var vaildResult = verifiyMessage(receiver, message, botname, sender, password);
 
-  switch (vaildResult) {
+	switch (vaildResult) {
 
-    //Bad Request: Wrong receiver name
+		//Bad Request: Wrong receiver name
 
-    case 'Bad Request: Wrong receiver name':
-      res.status(400).send(vaildResult);
-      break;
+		case 'Bad Request: Wrong receiver name':
+			res.status(400).send(vaildResult);
+			break;
 
-      //Bad Request: Wrong bot name
+			//Bad Request: Wrong bot name
 
-    case 'Bad Request: Wrong bot name':
-      res.status(401).send(vaildResult);
-      break;
+		case 'Bad Request: Wrong bot name':
+			res.status(401).send(vaildResult);
+			break;
 
-      //Bad Request: Sender not found
+			//Bad Request: Sender not found
 
-    case 'Bad Request: Sender not found':
-      res.status(406).send(vaildResult);
-      break;
+		case 'Bad Request: Sender not found':
+			res.status(406).send(vaildResult);
+			break;
 
-      //Bad Request: Password not match
+			//Bad Request: Password not match
 
-    case 'Bad Request: Password not match':
-      res.status(402).send(vaildResult);
-      break;
+		case 'Bad Request: Password not match':
+			res.status(402).send(vaildResult);
+			break;
 
-      //Bad Request: Missing message
+			//Bad Request: Missing message
 
-    case 'Bad Request: Missing message':
-      res.status(403).send(vaildResult);
-      break;
+		case 'Bad Request: Missing message':
+			res.status(403).send(vaildResult);
+			break;
 
-    case 'Message verified':
+		case 'Message verified':
 
-      telegram.sendMessage(receiver, message, botname,function(err,message){
+			logger.info('Sending Message....');
+			logger.info('Message:')
+			logger.info({
+				sender: sender,
+				receiver: receiver,
+				botname: botname,
+				message: message
+			})
 
-        if(err){
-            logger.error(err);
-            res.status(407).send(JSON.stringify(err));
-            return;
-        }
+			telegram.sendMessage(receiver, message, botname, function(err, message) {
 
-        logger.info(message);
+				if (err) {
+					logger.error(err);
+					res.status(407).send(JSON.stringify(err));
+					return;
+				}
 
-        res.status(201).send(JSON.stringify(message));
-    });
-  }
+				logger.info(message);
+
+				res.status(201).send(JSON.stringify(message));
+			});
+	}
 }
 
 module.exports = {
-  'healthCheck': healthCheck,
-  'sendMessage': sendMessage
+	'healthCheck': healthCheck,
+	'sendMessage': sendMessage
 };

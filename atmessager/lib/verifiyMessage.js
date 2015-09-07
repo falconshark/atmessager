@@ -1,4 +1,4 @@
-var logger = require('log4js').getLogger('verifiyMessage');
+var logger = require('log4js').getLogger('APP_LOG');
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
 	.file('receviers', __dirname + '/../config/receivers.json')

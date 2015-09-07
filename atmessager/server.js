@@ -6,7 +6,7 @@ nconf.argv()
 
 //Require log4js for display running log
 var log4js = require('log4js');
-var logger = log4js.getLogger('Server');
+var logger = log4js.getLogger('APP_LOG');
 
 function startServer(app){
 
