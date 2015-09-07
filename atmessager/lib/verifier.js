@@ -1,11 +1,6 @@
 var logger = require('log4js').getLogger('APP_LOG');
-var nconf = require('nconf');
-nconf.file('bots', __dirname + '/../config/bots.json')
-	.file('receviers', __dirname + '/../config/receivers.json')
-	.file('senders', __dirname + '/../config/senders.json');
 
-
-function verifiyMessage(receiver, message, botname, sender, password) {
+function verifiyMessage(config, receiver, message, botname, sender, password) {
 
 	//If miss message, return error message
 
