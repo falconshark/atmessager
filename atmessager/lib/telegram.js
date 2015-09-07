@@ -3,22 +3,8 @@ var request = require('request');
 
 function sendMessage(config, receiver, message, botname, callback) {
 
-	try {
-		var chat_id = config.get(receiver).chat_id;
-		var token = config.get(botname).token;
-	} catch (ex) {
-
-		err = {
-			error: null,
-			description: 'receiver or bot not found!'
-		};
-
-		logger.error(err);
-
-		callback(err, null);
-
-		return;
-	}
+	var chat_id = config.receivers[receiver].chat_id;
+	var token = config.bots[botname].token;
 
 	request.post({
 			url: 'https://api.telegram.org/bot' + token + '/sendMessage',
