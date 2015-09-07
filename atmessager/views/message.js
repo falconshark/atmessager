@@ -1,11 +1,13 @@
 var logger = require('log4js').getLogger('APP_LOG');
 var nconf = require('nconf');
-nconf.file('bots', __dirname + '/../config/bots.json')
-	.file('receviers', __dirname + '/../config/receivers.json')
-	.file('senders', __dirname + '/../config/senders.json');
-
 var verifiyMessage = require(__dirname + '/../lib/verifier').verifiyMessage;
 var telegram = require(__dirname + '/../lib/telegram');
+
+var config = {
+	receivers: nconf.get('receivers'),
+	senders: nconf.get('senders'),
+	bots: nconf.get('bots')
+};
 
 var healthCheck = function(req, res) {
 
@@ -20,7 +22,7 @@ function sendMessage(req, res) {
 	var sender = req.body.sender;
 	var password = req.body.password;
 
-	var vaildResult = verifiyMessage(nconf, receiver, message, botname, sender, password);
+	var vaildResult = verifiyMessage(config, receiver, message, botname, sender, password);
 
 	switch (vaildResult) {
 
@@ -65,7 +67,7 @@ function sendMessage(req, res) {
 				message: message
 			})
 
-			telegram.sendMessage(nconf, receiver, message, botname, function(err, message) {
+			telegram.sendMessage(config, receiver, message, botname, function(err, message) {
 
 				if (err) {
 					logger.error(err);
