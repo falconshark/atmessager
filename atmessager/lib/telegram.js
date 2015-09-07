@@ -28,7 +28,7 @@ function sendMessage(config, receiver, message, botname, callback) {
 				logger.error(body['description']);
 
 				err = {
-					error: body['error_code'],
+					error_code: body['error_code'],
 					description: body['description']
 				};
 
