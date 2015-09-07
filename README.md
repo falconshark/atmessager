@@ -177,3 +177,4 @@ $ nodeunit testcase.js
 
 Issues
 -----------
+If there are any bug, please feel feel to open a issues.
