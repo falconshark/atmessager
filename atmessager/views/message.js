@@ -1,12 +1,12 @@
 var nconf = require('nconf');
 var logger = require('log4js').getLogger('APP_LOG');
 
-var verifiyMessage = require(__dirname + '/../lib/verifiyMessage').verifiyMessage;
+var verifiyMessage = require(__dirname + '/../lib/verifier').verifiyMessage;
 var telegram = require(__dirname + '/../lib/telegram');
 
 var healthCheck = function(req, res) {
 
-	res.status(200).send('All right.');
+	res.status(200).send('OK');
 }
 
 function sendMessage(req, res) {
@@ -30,25 +30,25 @@ function sendMessage(req, res) {
 			//Bad Request: Wrong bot name
 
 		case 'Bad Request: Wrong bot name':
-			res.status(401).send(vaildResult);
+			res.status(400).send(vaildResult);
 			break;
 
 			//Bad Request: Sender not found
 
 		case 'Bad Request: Sender not found':
-			res.status(406).send(vaildResult);
+			res.status(400).send(vaildResult);
 			break;
 
 			//Bad Request: Password not match
 
 		case 'Bad Request: Password not match':
-			res.status(402).send(vaildResult);
+			res.status(400).send(vaildResult);
 			break;
 
 			//Bad Request: Missing message
 
 		case 'Bad Request: Missing message':
-			res.status(403).send(vaildResult);
+			res.status(400).send(vaildResult);
 			break;
 
 		case 'Message verified':
@@ -66,7 +66,7 @@ function sendMessage(req, res) {
 
 				if (err) {
 					logger.error(err);
-					res.status(407).send(JSON.stringify(err));
+					res.status(403).send(JSON.stringify(err));
 					return;
 				}
 
@@ -74,6 +74,10 @@ function sendMessage(req, res) {
 
 				res.status(201).send(JSON.stringify(message));
 			});
+			break;
+
+		default:
+			res.statusCode(204);
 	}
 }
 
