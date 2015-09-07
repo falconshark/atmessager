@@ -11,29 +11,29 @@ function verifiyMessage(config, receiver, message, botname, sender, password) {
 
 	//If receiver not found, return error message
 
-	if (nconf.get(receiver) === undefined) {
+	if (config.get(receiver) === undefined) {
 
 		return 'Bad Request: Wrong receiver name';
 	}
 
 	//If sender not found, return error message
 
-	if (nconf.get(sender) === undefined) {
+	if (config.get(sender) === undefined) {
 
 		return 'Bad Request: Sender not found';
 	}
 
 	//If bot not found, return error message
 
-	if (nconf.get(botname) === undefined) {
+	if (config.get(botname) === undefined) {
 
 		return 'Bad Request: Wrong bot name';
 	}
 
 	//If password missmatch, return error message
 
-	if (password !== nconf.get(sender).password1 &&
-		password !== nconf.get(sender).password2) {
+	if (password !== config.get(sender).password1 &&
+		password !== config.get(sender).password2) {
 
 		return 'Bad Request: Password not match';
 	}

@@ -4,8 +4,8 @@ var request = require('request');
 function sendMessage(config, receiver, message, botname, callback) {
 
 	try {
-		var chat_id = nconf.get(receiver).chat_id;
-		var token = nconf.get(botname).token;
+		var chat_id = config.get(receiver).chat_id;
+		var token = config.get(botname).token;
 	} catch (ex) {
 
 		err = {
