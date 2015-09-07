@@ -27,38 +27,38 @@ function sendMessage(req, res) {
   switch (vaildResult) {
 
     case 'Error: Wrong receiver name':
-      res.status(401).send({
+      res.status(401).send(JSON.stringify({
         error_code: 401,
         description: vaildResult
-      });
+      }));
       break;
 
     case 'Error: Wrong bot name':
-      res.status(401).send({
+      res.status(401).send(JSON.stringify({
         error_code: 401,
         description: vaildResult
-      });
+      }));
       break;
 
     case 'Error: Sender not found':
-      res.status(401).send({
+      res.status(401).send(({
         error_code: 401,
         description: vaildResult
-      });
+      }));
       break;
 
     case 'Error: Password not match':
-      res.status(401).send({
+      res.status(401).send(JSON.stringify({
         error_code: 401,
         description: vaildResult
-      });
+      }));
       break;
 
     case 'Error: Missing message':
-      res.status(400).send({
+      res.status(400).send(JSON.stringify({
         error_code: 400,
         description: vaildResult
-      });
+      }));
       break;
 
     case 'Message verified':

@@ -133,16 +133,16 @@ curl --data "receiver=sardo & message=hello & botname=atmessager
 If success, It will return status code 201, and a JSON object like this:
 
 ```json
-{ receiver: 'sardo',
-  botname: 'atmessager',
-  message: 'hello',
-  sendTime: Mon Sep 07 2015 23:17:24 GMT+0800 (HKT) }
+{ "receiver": "sardo",
+  "botname": "atmessager",
+  "message": "hello",
+  "sendTime": "Mon Sep 07 2015 23:17:24 GMT+0800 (HKT)" }
 ```
 
 Otherwise, It will return status code 401 or 403, and a error object like this:
 
 ```json
-{ error_code: 401, description: 'Error: Unauthorized' }
+{ "error_code": 401, "description": "Error: Unauthorized" }
 ```
 
 Unit Test
@@ -174,3 +174,6 @@ It is same as configuration part.
 ```bash
 $ nodeunit testcase.js
 ```
+
+Issues
+-----------
