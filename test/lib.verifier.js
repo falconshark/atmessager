@@ -1,7 +1,7 @@
 'use strict';
 
 var logger = require('log4js').getLogger('Unit-Test');
-var verifiyMessage = require(__dirname + '/../atmessager/lib/verifiyMessage').verifiyMessage;
+var verifiyMessage = require(__dirname + '/../atmessager/lib/verifier').verifiyMessage;
 
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/config/bots.json')
