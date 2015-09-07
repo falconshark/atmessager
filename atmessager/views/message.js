@@ -76,7 +76,7 @@ function sendMessage(req, res) {
 
         if (err) {
           logger.error(err);
-          res.status(err.error_code).send(JSON.stringify(err));
+          res.status(403).send(JSON.stringify(err));
           return;
         }
 
