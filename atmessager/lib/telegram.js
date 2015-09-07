@@ -1,4 +1,4 @@
-var logger = require('log4js').getLogger('telegram');
+var logger = require('log4js').getLogger('APP_LOG');
 
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/../config/bots.json')
@@ -15,7 +15,8 @@ function sendMessage(receiver, message, botname, callback) {
 	} catch (ex) {
 
 		err = {
-			error: 'receiver or bot not found!'
+			error:null,
+			description: 'receiver or bot not found!'
 		};
 
 		logger.error(err);
@@ -60,6 +61,7 @@ function sendMessage(receiver, message, botname, callback) {
 
 			var successMessage = {
 				receiver: receiver,
+				botname: botname,
 				message: message,
 				sendTime: new Date()
 			};
