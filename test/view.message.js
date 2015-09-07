@@ -1,15 +1,17 @@
 'use strict';
 
+var nconf = require('../atmessager/node_modules/nconf/lib/nconf');
+
+nconf.file('bots', __dirname + '/config/bots.json')
+	.file('senders',__dirname + '/config/senders.json')
+	.file('receviers', __dirname + '/config/receivers.json')
+	.file('testconfig', __dirname + '/config/testconfig.json');
+
 var express = require('express');
 var supertest = require('supertest');
 var logger = require('log4js').getLogger('Unit-Test');
 var testUtil = require('./common/testutil.js');
 var message = require('../atmessager/views/message.js');
-
-var nconf = require('nconf');
-nconf.file('bots', __dirname + '/config/bots.json')
-	.file('receviers', __dirname + '/config/receivers.json')
-	.file('testconfig', __dirname + '/config/testconfig.json');
 
 var app = testUtil.configExpress(express());
 
@@ -135,7 +137,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 401, 'It should return 401!');
+				test.equal(res.statusCode, 400, 'It should return 401!');
 
 				test.done();
 
@@ -161,7 +163,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 406, 'It should return 406!');
+				test.equal(res.statusCode, 400, 'It should return 400!');
 
 				test.done();
 
@@ -186,7 +188,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 402, 'It should return 402!');
+				test.equal(res.statusCode, 400, 'It should return 402!');
 
 				test.done();
 
@@ -211,7 +213,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 403, 'It should return 403!');
+				test.equal(res.statusCode, 400, 'It should return 403!');
 
 				test.done();
 
@@ -237,14 +239,14 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 407, 'It should return 407!');
+				test.equal(res.statusCode, 403, 'It should return 403!');
 
 				test.done();
 
 			});
 	},
 
-	'Test send message failed(receiver not existed)': function(test) {
+	'Test send message failed(chat_id not found)': function(test) {
 
 		var receiver = nconf.get('message').receiver;
 		var botname = nconf.get('message').botname;
@@ -263,7 +265,7 @@ exports['Test send message'] = {
 
 				logger.debug('The http status of message view: ' + res.statusCode);
 
-				test.equal(res.statusCode, 407, 'It should return 407!');
+				test.equal(res.statusCode, 403, 'It should return 403!');
 
 				test.done();
 
