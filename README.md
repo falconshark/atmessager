@@ -50,7 +50,7 @@ Example:
 		"path": "/var/log/atm/atm.access_log"
 	},
 	"app_log":{
-		"path": "/var/log/atm/atm.access_log"
+		"path": "/var/log/atm/atm.app_log"
 	}
 }
 ```
