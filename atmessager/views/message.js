@@ -27,6 +27,7 @@ function sendMessage(req, res) {
   switch (vaildResult) {
 
     case 'Error: Wrong receiver name':
+      res.setHeader('Content-Type', 'application/json');
       res.status(401).send(JSON.stringify({
         error_code: 401,
         description: vaildResult
@@ -34,6 +35,7 @@ function sendMessage(req, res) {
       break;
 
     case 'Error: Wrong bot name':
+      res.setHeader('Content-Type', 'application/json');
       res.status(401).send(JSON.stringify({
         error_code: 401,
         description: vaildResult
@@ -41,6 +43,7 @@ function sendMessage(req, res) {
       break;
 
     case 'Error: Sender not found':
+      res.setHeader('Content-Type', 'application/json');
       res.status(401).send(({
         error_code: 401,
         description: vaildResult
@@ -48,6 +51,7 @@ function sendMessage(req, res) {
       break;
 
     case 'Error: Password not match':
+      res.setHeader('Content-Type', 'application/json');
       res.status(401).send(JSON.stringify({
         error_code: 401,
         description: vaildResult
@@ -55,6 +59,7 @@ function sendMessage(req, res) {
       break;
 
     case 'Error: Missing message':
+      res.setHeader('Content-Type', 'application/json');
       res.status(400).send(JSON.stringify({
         error_code: 400,
         description: vaildResult
@@ -76,12 +81,14 @@ function sendMessage(req, res) {
 
         if (err) {
           logger.error(err);
+					res.setHeader('Content-Type', 'application/json');
           res.status(403).send(JSON.stringify(err));
           return;
         }
 
         logger.info(message);
 
+				res.setHeader('Content-Type', 'application/json');
         res.status(201).send(JSON.stringify(message));
       });
       break;
