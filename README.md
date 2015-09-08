@@ -114,6 +114,17 @@ Use this command to start ATMessager:
 $ node app.js
 ``` 
 
+If you want to let ATMessager get config file from customized path, use this command:
+
+```bash
+$ node app.js [path of config file] [path of bots config file] [path of senders config files] [path of receivers config files]
+```
+Examples:
+
+```bash
+node app.js /opt/atm/config.json /opt/atm/bots.json /opt/atm/senders.json /opt/atm/receivers.json
+```
+
 If you want to run it at the background, use forever:
 
 ```bash
