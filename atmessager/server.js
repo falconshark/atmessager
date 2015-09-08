@@ -7,13 +7,13 @@ var logger = log4js.getLogger('APP_LOG');
 
 function startServer(app){
 
-  var port = nconf.get('server').port;
-  var listen = app.listen(port);
+    var port = nconf.get('server').port;
+    var listen = app.listen(port);
 
-  logger.info('ATMessager is now running on port '+ port + '∠( ᐛ 」∠)＿');
+    logger.info('ATMessager is now running on port '+ port + '∠( ᐛ 」∠)＿');
 
 }
 
 module.exports ={
-  startServer:startServer
+    startServer:startServer
 }

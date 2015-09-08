@@ -4,9 +4,9 @@ var log4js = require('log4js');
 var fs = require('fs');
 var nconf = require('nconf');
 nconf.file('bots', __dirname + '/config/bots.json')
-    .file('senders', __dirname + '/config/senders.json')
-	.file('receviers', __dirname + '/config/receivers.json')
-	.file('config', __dirname + '/config/config.json');
+.file('senders', __dirname + '/config/senders.json')
+.file('receviers', __dirname + '/config/receivers.json')
+.file('config', __dirname + '/config/config.json');
 
 var access_log_path = nconf.get('access_log').path;
 var app_log_path = nconf.get('app_log').path;
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 app.use(log4js.connectLogger(log4js.getLogger('ACCESS_LOG'),{level:'auto'}));
 
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 app.use('/', router);
 
