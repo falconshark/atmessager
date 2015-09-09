@@ -80,7 +80,7 @@ Example:
 
 ```json
 {
-	"receiver": {
+	"receivers": {
 		"receiver_name": {
 			"chat_id": "1234567"
 		}
