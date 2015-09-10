@@ -1,10 +1,18 @@
 var logger = require('log4js').getLogger('APP_LOG');
 var request = require('request');
 
-function sendMessage(config, receiver, message, botname, callback) {
+function sendMessage(config, sender, receiver, message, botname, callback) {
 
     var chat_id = config.receivers[receiver].chat_id;
     var token = config.bots[botname].token;
+    var prefix = '';
+
+    if(config.senders[sender].prefix){
+
+        prefix = config.senders[sender].prefix;
+
+        message = prefix + message;
+    }
 
     request.post({
         url: 'https://api.telegram.org/bot' + token + '/sendMessage',
