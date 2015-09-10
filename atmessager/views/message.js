@@ -44,7 +44,7 @@ function sendMessage(req, res) {
             message: message
         })
 
-        telegram.sendMessage(config, receiver, message, botname, function(err, message) {
+        telegram.sendMessage(config, sender, receiver, message, botname, function(err, message) {
 
             if (err) {
                 logger.error(err);
