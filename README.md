@@ -93,6 +93,8 @@ senders.json
 
 senders.json contain all of the user name and password. ATMessager will use these username(In bots.json) and password to do authentication.
 
+Moreover, you can add the prefix into message too.
+
 Example:
 
 ```json
@@ -100,7 +102,8 @@ Example:
 	"senders": {
 		"user_id": {
 			"password1": "Sei0wao9",
-			"password2": "Deeh8se6"
+			"password2": "Deeh8se6",
+			"prefix": "Your own string"
 		}
 	}
 }
