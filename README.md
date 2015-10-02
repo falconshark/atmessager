@@ -76,6 +76,8 @@ receivers.json
 
 receivers.json contain all of the registed user name and chat id. ATMessager will use these receiver name to find their chat id.
 
+You can get the chat id by using the [getUpdate](https://core.telegram.org/bots/api#getupdates) function of Telegram Bot API.
+
 Example:
 
 ```json
