@@ -4,3 +4,4 @@ receivers.json
 senders.json
 testconfig.json
 config.json
+atmessager/node_modules
