@@ -1,15 +1,15 @@
 Sandbox
 ---
 
-This is a virtual environment for developer to testing the new code of website.
+This is a virtual environment for developer to testing the new code of iam-manager.
 
 Installation
 ---
-1.Downloads vagrant (1.7.2) from http://www.vagrantup.com/downloads.html 
+1.Downloads vagrant (1.7.2) from http://www.vagrantup.com/downloads.html
 
 2.Install vagrant.
 
-3.Download required vagrant box from **software -> vagrant-box** in google drive.
+3.Download required vagrant box (Ubuntu14.04) from  http://www.vagrantbox.es/
 
 4.Import vargrant box with this command:
 ```bash
@@ -42,7 +42,7 @@ $ vargrant ssh
 If you want to stop it , run this command:
 ```bash
 $ vagrant halt
-``` 
+```
 
 Option
 ---
