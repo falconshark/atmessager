@@ -6,7 +6,7 @@
   "dependencies": {
     "request":">=2.68.0",
     "log4js": "0.6.21",
-    "express":"4.12.2",
+    "express":"4.19.2",
     "nconf":"0.7.1",
     "supertest":"1.0.1",
     "body-parser":"1.13.3"
