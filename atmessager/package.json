@@ -5,7 +5,7 @@
   "author": "Sardo Ip<sardo.ip@nxtomo.hk>",
   "dependencies": {
     "request":"2.68.0",
-    "log4js":"0.6.26",
+    "log4js":"6.4.0",
     "nconf":"0.7.1",
     "express":"4.19.2",
     "body-parser":"1.13.3"
